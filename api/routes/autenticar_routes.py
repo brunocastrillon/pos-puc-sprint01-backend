@@ -1,8 +1,7 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
-from services.autenticar_service import autenticar, registrar
+from services.autenticar_service import autenticar_usuario, registrar_usuario
 
 autenticar_bp = Blueprint("autenticar", __name__)
 
@@ -18,12 +17,12 @@ autenticar_bp = Blueprint("autenticar", __name__)
                 "schema": {
                     "type": "object",
                     "properties": {
-                        "username": {"type": "string"},
-                        "password": {"type": "string"}
+                        "login": {"type": "string"},
+                        "senha": {"type": "string"}
                     },
                     "example": {
-                        "username": "usuario1",
-                        "password": "senha123"
+                        "login": "usuario1",
+                        "senha": "senha123"
                     }
                 }
             }
@@ -36,7 +35,16 @@ autenticar_bp = Blueprint("autenticar", __name__)
     }
 })
 def autenticar():
-    pass
+    if not request.is_json:
+        return jsonify({"error": "o corpo da requisição deve ser JSON"}), 415
+    
+    data = request.json
+    autenticacao = autenticar_usuario(data["login"], data["senha"])
+
+    if not autenticacao:
+        return jsonify({"error": "credenciais inválidas"}), 401
+    
+    return jsonify(autenticacao), 200
 
 @autenticar_bp.route("/autenticar/registrar", methods=["POST"])
 @swag_from({
@@ -50,22 +58,23 @@ def autenticar():
                 "schema": {
                     "type": "object",
                     "properties": {
-                        "username": {"type": "string"},
-                        "password": {"type": "string"}
+                        "login": {"type": "string"},
+                        "senha": {"type": "string"}
                     },
                     "example": {
-                        "username": "usuarioteste",
-                        "password": "123",
+                        "login": "usuario",
+                        "senha": "123",
                     }
                 }
             }
         }
     },
     "responses": {
-        200: {"description": "Token JWT retornado"},
-        401: {"description": "Credenciais inválidas"},
-        415: {"description": "Content-Type incorreto"}
+        201: {"description": "login registrado com sucesso"},
+        400: {"description": "Usuário já existe"}
     }
 })
 def registrar():
-    pass
+    data = request.json
+    usuario = registrar_usuario(data["login"], data["senha"])
+    return jsonify({"message": "usuário registrado com sucesso", "id": usuario.Id}), 201
