@@ -1,14 +1,14 @@
 from db.database import db
 from models.Comentario import Comentario
 
-def criar(conteudo, id_postagem, id_usuario):
+def criar_comentario(conteudo, id_postagem, id_usuario):
     pass
 
-def editar(conteudo, id_comentario):
+def editar_comentario(conteudo, id_comentario):
     pass
 
-def deletar(id_comentario):
+def deletar_comentario(id_comentario):
     pass
 
-def listar_por_postagem(id_postagem):
+def listar_comentarios_por_postagem(id_postagem):
     pass

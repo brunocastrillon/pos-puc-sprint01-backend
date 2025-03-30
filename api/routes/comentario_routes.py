@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
-from services.comentario_service import criar, deletar, editar, listar_por_postagem
+from services.comentario_service import criar_comentario, deletar_comentario, editar_comentario, listar_comentarios_por_postagem
 
 comentario_bp = Blueprint("comentario", __name__)
 

@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
-from services.curtida_service import curtir, descurtir, listar_por_postagem, listar_quem_curtiu_postagem
+from services.curtida_service import curtir_postagem, descurtir_postagem, listar_curtidas_por_postagem, listar_quem_curtiu_postagem
 
 curtida_bp = Blueprint("curtida", __name__)
 
