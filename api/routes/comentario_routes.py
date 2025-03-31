@@ -20,12 +20,12 @@ comentario_bp = Blueprint("comentario", __name__)
                 "schema": {
                     "type": "object",
                     "properties": {
-                        "post_id": {"type": "integer"},
-                        "content": {"type": "string"}
+                        "id_postagem": {"type": "integer"},
+                        "conteudo": {"type": "string"}
                     },
                     "example": {
-                        "post_id": "0",
-                        "content": "conteudo exemlo",
+                        "id_postagem": "0",
+                        "conteudo": "conteudo exemlo",
                     }
                 }
             }
@@ -37,7 +37,12 @@ comentario_bp = Blueprint("comentario", __name__)
     }
 })
 def criar():
-    pass
+    id_usuario = get_jwt_identity()
+    data = request.json
+
+    comentario = criar_comentario(data["conteudo"], data["id_postagem"], id_usuario)
+
+    return jsonify({"message": "Comentário criado!", "id": comentario.Id}), 201
 
 @comentario_bp.route("/comentario/<int:id_comentario>", methods=["DELETE"])
 @jwt_required()
@@ -59,8 +64,14 @@ def criar():
         401: {"description": "Acesso negado"}
     }
 })
-def deletar():
-    pass
+def deletar(id_comentario):
+    id_usuario = get_jwt_identity()
+    removido = deletar_comentario(id_comentario)
+
+    if not removido:
+        return jsonify({"error": "Comentário não encontrado"}), 404
+
+    return jsonify({"message": "Comentário excluído!"}), 200
 
 @comentario_bp.route("/comentario/<int:id_comentario>", methods=["PUT"])
 @jwt_required()
@@ -84,10 +95,10 @@ def deletar():
                 "schema": {
                     "type": "object",
                     "properties": {
-                        "content": {"type": "string"}
+                        "conteudo": {"type": "string"}
                     },
                     "example": {
-                        "content": "conteudo exemlo",
+                        "conteudo": "conteudo exemlo",
                     }
                 }
             }
@@ -98,8 +109,16 @@ def deletar():
         401: {"description": "Acesso negado"}
     }
 })
-def editar():
-    pass
+def editar(id_comentario):
+    id_usuario = get_jwt_identity()
+    data = request.json
+    
+    comentario = editar_comentario(data["conteudo"], id_comentario)
+
+    if not comentario:
+        return jsonify({"error": "comentário não encontrado"}), 404
+
+    return jsonify({"message": "Comentário atualizado!", "id": comentario.Id}), 200
 
 @comentario_bp.route("/postagem/<int:id_postagem>/comentarios", methods=["GET"])
 @jwt_required()
@@ -121,5 +140,6 @@ def editar():
         401: {"description": "Acesso negado"}
     }
 })
-def listar_por_postagem():
-    pass
+def listar_por_postagem(id_postagem): 
+    comments = listar_comentarios_por_postagem(id_postagem)
+    return jsonify(comments), 200
