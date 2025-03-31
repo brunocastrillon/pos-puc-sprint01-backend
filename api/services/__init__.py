@@ -1,4 +1,4 @@
 from services.autenticar_service import autenticar_usuario, registrar_usuario
 from services.comentario_service import criar_comentario, deletar_comentario, editar_comentario, listar_comentarios_por_postagem
-from services.curtida_service import curtir_postagem, descurtir_postagem, listar_curtidas_por_postagem, listar_quem_curtiu_postagem
+from services.curtida_service import curtir_postagem, descurtir_postagem, contabilizar_curtidas_por_postagem, listar_quem_curtiu_postagem
 from services.postagem_service import criar_postagem, deletar_postagem, editar_postagem, listar_postagens_por_usuario, listar_todas_postagens, obter_postagem

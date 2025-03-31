@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flasgger import swag_from
 
-from services.curtida_service import curtir_postagem, descurtir_postagem, listar_curtidas_por_postagem, listar_quem_curtiu_postagem
+from services.curtida_service import curtir_postagem, descurtir_postagem, contabilizar_curtidas_por_postagem, listar_quem_curtiu_postagem
 
 curtida_bp = Blueprint("curtida", __name__)
 
@@ -29,9 +29,16 @@ curtida_bp = Blueprint("curtida", __name__)
     }
 })
 def curtir(id_postagem):
-    pass
+    id_usuario = get_jwt_identity()
+    
+    sucesso = curtir_postagem(id_postagem, id_usuario)
 
-@curtida_bp.route("/postagem/<int:id_postagem>/descurtit", methods=["DELETE"])
+    if not sucesso:
+        return jsonify({"error": "Você já curtiu essa postagem"}), 400
+
+    return jsonify({"message": "Postagem curtida com sucesso!"}), 201
+
+@curtida_bp.route("/postagem/<int:id_postagem>/descurtir", methods=["DELETE"])
 @jwt_required()
 @swag_from({
     "tags": ["Curtida"],
@@ -54,7 +61,14 @@ def curtir(id_postagem):
     }
 })
 def descurtir(id_postagem):
-    pass
+    id_usuario = get_jwt_identity()
+
+    sucesso = descurtir_postagem(id_postagem, id_usuario)
+
+    if not sucesso:
+        return jsonify({"error": "Você ainda não curtiu essa postagem"}), 400
+
+    return jsonify({"message": "Curtida removida com sucesso!"}), 200
 
 @curtida_bp.route("/postagem/<int:id_postagem>/curtidas", methods=["GET"])
 @jwt_required()
@@ -77,8 +91,10 @@ def descurtir(id_postagem):
         404: {"description": "Postagem não encontrada"}
     }
 })
-def listar_por_postagem(id_postagem):
-    pass
+def quantos_curtiram_postagem(id_postagem):
+    total = contabilizar_curtidas_por_postagem(id_postagem)
+
+    return jsonify({"id_postagem": id_postagem, "curtidas": total}), 200
 
 @curtida_bp.route("/postagem/<int:id_postagem>/quemcurtiu", methods=["GET"])
 @jwt_required()
@@ -101,5 +117,7 @@ def listar_por_postagem(id_postagem):
         404: {"description": "Postagem não encontrada"}
     }
 })
-def listar_quem_curtiu_postagem(id_postagem):
-    pass
+def quem_curtiu_postagem(id_postagem):
+    result = listar_quem_curtiu_postagem(id_postagem)
+    
+    return jsonify(result), 200
