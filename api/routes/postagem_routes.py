@@ -129,7 +129,7 @@ def editar(id_postagem):
     if not postagem:
         return jsonify({"error": "Postagem não encontrada"}), 404
     
-    if postagem.Id_Usuario != int(id_usuario):
+    if postagem["id_usuario"] != int(id_usuario):
         return jsonify({"error": "Você não é o autor desta postagem. Portanto, não tem permissão para edita-la"}), 403
     
     data = request.json

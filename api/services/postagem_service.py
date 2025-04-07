@@ -47,6 +47,7 @@ def listar_todas_postagens():
         .join(Usuario, Postagem.Id_Usuario == Usuario.Id)
         .outerjoin(Curtida, Postagem.Id == Curtida.Id_Postagem)
         .group_by(Postagem.Id, Usuario.Login)
+        .order_by(Postagem.Data_Criacao.desc())
         .all()
     )
 
