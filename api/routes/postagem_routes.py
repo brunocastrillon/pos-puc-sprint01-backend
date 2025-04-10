@@ -140,7 +140,7 @@ def editar(id_postagem):
     
     return jsonify({"message": "Postagem atualizada com sucesso!", "id": postagem_editada.Id}), 200
 
-@postagem_bp.route("/usuario/postagem", methods=["GET"])
+@postagem_bp.route("/postagem/usuario", methods=["GET"])
 @jwt_required()
 @swag_from({
     "tags": ["Postagem"],

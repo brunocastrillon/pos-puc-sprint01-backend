@@ -69,7 +69,7 @@ def listar_postagens_por_usuario(id_usuario):
     if not usuario:
         return None
 
-    postagens = Postagem.query.filter_by(Id_Usuario=id_usuario).all()
+    postagens = Postagem.query.filter_by(Id_Usuario=id_usuario).order_by(Postagem.Data_Criacao.desc()).all()
     
     return [
         {
