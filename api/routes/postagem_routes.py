@@ -10,8 +10,8 @@ postagem_bp = Blueprint("postagem", __name__)
 @jwt_required()
 @swag_from({
     "tags": ["Postagem"],
-    "summary": "",
-    "description": "",
+    "summary": "Nova postagem",
+    "description": "Realiza a inserção de um novo registro na tabela Postagens",
     "security": [{"BearerAuth": []}],
     "requestBody": {
         "required": True,
@@ -48,8 +48,8 @@ def criar():
 @jwt_required()
 @swag_from({
     "tags": ["Postagem"],
-    "summary": "",
-    "description": "",
+    "summary": "Excluir postagem ",
+    "description": "Realiza a remoção de um registro na tabela Postagens",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
@@ -87,8 +87,8 @@ def deletar(id_postagem):
 @jwt_required()
 @swag_from({
     "tags": ["Postagem"],
-    "summary": "",
-    "description": "",
+    "summary": "Editar postagem",
+    "description": "Realiza a edição de um registro na tabela Postagens",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
@@ -144,8 +144,8 @@ def editar(id_postagem):
 @jwt_required()
 @swag_from({
     "tags": ["Postagem"],
-    "summary": "",
-    "description": "",
+    "summary": "Postagem por usuário",
+    "description": "Realiza uma consulta na tabela Postagens retornando uma lista de de postagens do usuário",
     "security": [{"BearerAuth": []}],
     "responses": {
         200: {"description": "Lista de postagem do usuário"},
@@ -166,8 +166,8 @@ def listar_por_usuario():
 @jwt_required()
 @swag_from({
     "tags": ["Postagem"],
-    "summary": "",
-    "description": "",
+    "summary": "Listar todas as postagem",
+    "description": "Realiza uma consulta na tabela Postagens retornando uma lista de com todas as postagens",
     "security": [{"BearerAuth": []}],
     "responses": {
         200: {"description": "Lista de postagem"},

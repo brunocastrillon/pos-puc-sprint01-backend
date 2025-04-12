@@ -10,8 +10,8 @@ comentario_bp = Blueprint("comentario", __name__)
 @jwt_required()
 @swag_from({
     "tags": ["Comentário"],
-    "summary": "alguma coisa",
-    "description": "alguma coisa",
+    "summary": "Novo Comentário",
+    "description": "Realiza a inserção de um novo registro na tabela Comentarios",
     "security": [{"BearerAuth": []}],
     "requestBody": {
         "required": True,
@@ -48,8 +48,8 @@ def criar():
 @jwt_required()
 @swag_from({
     "tags": ["Comentário"],
-    "summary": "",
-    "description": "",
+    "summary": "Exclusão de um comentário",
+    "description": "Realiza a remoção de um registro na tabela Comentarios",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
@@ -77,8 +77,8 @@ def deletar(id_comentario):
 @jwt_required()
 @swag_from({
     "tags": ["Comentário"],
-    "summary": "",
-    "description": "",
+    "summary": "Edição de um comentário",
+    "description": "Realiza a edição de um registro na tabela Comentarios",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
@@ -124,8 +124,8 @@ def editar(id_comentario):
 @jwt_required()
 @swag_from({
     "tags": ["Comentário"],
-    "summary": "",
-    "description": "",
+    "summary": "Lista de comentários de uma postagem",
+    "description": "Realiza uma consulta na tabela Comentarios retornando uma lista de comentários vinculado a uma determinada postagem",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {

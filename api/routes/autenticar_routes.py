@@ -8,8 +8,8 @@ autenticar_bp = Blueprint("autenticar", __name__)
 @autenticar_bp.route("/autenticar/login", methods=["POST"])
 @swag_from({
     "tags": ["Autenticação"],
-    "summary": "alguma coisa",
-    "description": "alguma coisa",
+    "summary": "Autenticação do usuário",
+    "description": "Realiza consulta no banco de dados para validar as credencias informadas pelo usuário",
     "requestBody": {
         "required": True,
         "content": {
@@ -21,8 +21,8 @@ autenticar_bp = Blueprint("autenticar", __name__)
                         "senha": {"type": "string"}
                     },
                     "example": {
-                        "login": "usuario1",
-                        "senha": "senha123"
+                        "login": "usuario",
+                        "senha": "123"
                     }
                 }
             }
@@ -30,7 +30,6 @@ autenticar_bp = Blueprint("autenticar", __name__)
     },
     "responses": {
         200: {"description": "Token JWT retornado"},
-        401: {"description": "Credenciais inválidas"},
         415: {"description": "Content-Type incorreto"}
     }
 })
@@ -49,8 +48,8 @@ def autenticar():
 @autenticar_bp.route("/autenticar/registrar", methods=["POST"])
 @swag_from({
     "tags": ["Autenticação"],
-    "summary": "alguma coisa",
-    "description": "alguma coisa",
+    "summary": "Cadatra um novo usuário",
+    "description": "Realiza a inserção de um novo registro na tabela Usuario",
     "requestBody": {
         "required": True,
         "content": {

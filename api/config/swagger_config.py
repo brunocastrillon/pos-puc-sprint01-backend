@@ -4,10 +4,10 @@ swagger_config = {
     "info": {
         "title": "Microblog Minimalista - API",
         "version": "1.0",
-        "description": "Microblog Minimalista.",
+        "description": "Documentação da API do Microblog Minimalista",
         "contact": {
             "name": "Suporte API",
-            "email": "suporte@blogapi.com"
+            "email": "brunocastrillon@gmail.com"
         }
     },
     "components": {

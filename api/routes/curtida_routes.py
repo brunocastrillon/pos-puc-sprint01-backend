@@ -10,8 +10,8 @@ curtida_bp = Blueprint("curtida", __name__)
 @jwt_required()
 @swag_from({
     "tags": ["Curtida"],
-    "summary": "",
-    "description": "",
+    "summary": "Curtir uma postagem",
+    "description": "Realiza a inserção de um novo registro na tabela Curtidas",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
@@ -42,8 +42,8 @@ def curtir(id_postagem):
 @jwt_required()
 @swag_from({
     "tags": ["Curtida"],
-    "summary": "",
-    "description": "",
+    "summary": "discurtir uma postagem",
+    "description": "Realiza a remoção de um registro na tabela Curtidas",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
@@ -74,8 +74,8 @@ def descurtir(id_postagem):
 @jwt_required()
 @swag_from({
     "tags": ["Curtida"],
-    "summary": "",
-    "description": "",
+    "summary": "Quantidade de curtidas de uma determinada postagem",
+    "description": "Realiza uma consulta na tabela Curtidas retornando o total de curtidas que umadeterminada postagem possui",
     "security": [{"BearerAuth": []}],    
     "parameters": [
         {
@@ -100,8 +100,8 @@ def quantos_curtiram_postagem(id_postagem):
 @jwt_required()
 @swag_from({
     "tags": ["Curtida"],
-    "summary": "",
-    "description": "",
+    "summary": "Lista de quem curtiu uma determinada postagem",
+    "description": "Realiza uma consulta na tabela Curtidas retornando o total de curtidas retornando uma lista de usuários que curtiu uma determinada postagem",
     "security": [{"BearerAuth": []}],
     "parameters": [
         {
