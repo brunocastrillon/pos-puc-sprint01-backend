@@ -1,4 +1,4 @@
-# 📝 Mini-Blog API - Projeto Full-Stack Básico
+# 📝 Microblog API - Backend
 
 Esta API foi desenvolvida com **Python e Flask** como parte das atividades práticas da Sprint-01 (Desenvolvimento Full-Stack Básico) do curso de Pós-Graduação em Engenharia de Software. 
 
