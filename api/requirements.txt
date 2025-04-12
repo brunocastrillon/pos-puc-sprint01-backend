@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+flask-cors
+flask-jwt-extended
+flask-openapi3
+flask-openapi3-swagger
+flasgger
+pyjwt
+passlib[bcrypt]
+python-dotenv
