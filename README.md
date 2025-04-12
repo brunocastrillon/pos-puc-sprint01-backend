@@ -1,6 +1,6 @@
 # 📝 Mini-Blog API - Projeto Full-Stack Básico
 
-Esta API foi desenvolvida com **Python e Flask** como parte das atividades práticas da Sprint-01 (Desenvolvimento Full-Stack) do curso de Pós-Graduação em Engenharia de Software. 
+Esta API foi desenvolvida com **Python e Flask** como parte das atividades práticas da Sprint-01 (Desenvolvimento Full-Stack Básico) do curso de Pós-Graduação em Engenharia de Software. 
 
 O objetivo é fornecer uma base funcional para gerenciamento de **postagens**, **comentários** e **curtidas** em um mini-blog, aplicando conceitos fundamentais de backend, autenticação e boas práticas de desenvolvimento.
 
