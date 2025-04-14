@@ -112,4 +112,4 @@ A documentação interativa estará disponível automaticamente via Swagger ou O
 
 ---
 
-📌 *Projeto desenvolvido para fins acadêmicos no curso de Pós-Graduação em Engenharia de Software - Sprint 01.*
+📌 *Projeto desenvolvido para fins acadêmicos no curso de Pós-Graduação em Engenharia de Software*
